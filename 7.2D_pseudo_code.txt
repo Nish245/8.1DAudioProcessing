@@ -1,0 +1,52 @@
+Initialize GPIO for LED
+Initialize speech recognizer
+Create a GUI window with a status label and a Start button
+
+Function update_status(status):
+    Update the status label in the GUI with the given status
+
+Function recognize_audio(file_path):
+    Print message indicating the processing of the audio file
+    Try to load audio file
+        If successful, capture audio data
+        Print message indicating successful audio capture
+    Catch exceptions and print error message
+    Try to recognize speech from audio using PocketSphinx
+        If successful, return recognized text in lowercase
+    Catch recognition exceptions and print error message
+    Return None if recognition fails
+
+Function control_led(command):
+    If command is "on":
+        Print message indicating turning LED on
+        Turn LED on
+        Update GUI status to ON
+    Else if command is "off":
+        Print message indicating turning LED off
+        Turn LED off
+        Update GUI status to OFF
+    Else:
+        Print message indicating unrecognized command
+
+Function start_led_control():
+    Loop indefinitely:
+        Recognize command from "sound/on.wav"
+        If command is recognized:
+            Control LED based on command
+        Else:
+            Print message indicating no valid command recognized for "on.wav"
+        Wait for 2 seconds
+
+        Recognize command from "sound/off.wav"
+        If command is recognized:
+            Control LED based on command
+        Else:
+            Print message indicating no valid command recognized for "off.wav"
+        Wait for 2 seconds
+
+Function start_button_pressed():
+    Start a new thread to run start_led_control
+
+Create a Start button in the GUI with the command to call start_button_pressed when pressed
+Run the GUI main loop
+Cleanup GPIO on exit
